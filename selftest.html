@@ -1,0 +1,65 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>eduSync self-test</title></head>
+<body style="font-family:monospace;background:#0a0f20;color:#e8ecff"><pre id="o">running…</pre>
+<script>window.EDUSYNC_RETENTION_DAYS=0</script>
+<script src="vendor/sql-wasm.js"></script><script src="engine.js"></script>
+<script>
+const out=[];let fails=0;
+const ok=(n,c,x)=>{out.push((c?'PASS ':'FAIL ')+n+(x?' — '+x:''));if(!c)fails++};
+const J=async(m,u,b)=>{const r=await fetch(u,{method:m,headers:{'content-type':'application/json'},body:b?JSON.stringify(b):undefined});return{s:r.status,j:await r.json().catch(()=>null)}};
+(async()=>{try{
+ localStorage.clear();sessionStorage.clear();
+ const email='t'+Date.now()+'@x.test';
+ let r=await J('POST','/api/register',{name:'Test L',email,password:'longenough1',role:'learner'});ok('register learner',r.s===200);
+ r=await J('GET','/api/skills');ok('skills list',r.j.skills.length===6,r.j.skills.length+' skills');
+ const {TASKS,taskParams}=window.__edusync;
+ // negative: wrong sql, mutating sql, locked skill
+ r=await J('POST','/api/sql/run',{sql:'DROP TABLE orders'});ok('DDL rejected',r.s===400,r.j.error);
+ r=await J('POST','/api/sql/run',{sql:'SELECT 1; SELECT 2'});ok('multi-statement rejected',r.s===400);
+ const t0=Date.now();r=await J('POST','/api/sql/run',{sql:'WITH RECURSIVE c(x) AS (SELECT 1 UNION ALL SELECT x+1 FROM c) SELECT count(*) FROM c'});ok('infinite query killed',r.s===400&&Date.now()-t0<6000,r.j&&r.j.error+' in '+(Date.now()-t0)+'ms');
+ const locked=TASKS.find(t=>t.skill!==r0());function r0(){return 'sql_basics'}
+ // solve everything in order
+ const uid=(await J('GET','/api/me')).j.user.id;const me=JSON.parse(localStorage.getItem('edusync.state.v1')).users.find(u=>u.id===uid);
+ let verified=0;
+ for(let pass=0;pass<8;pass++){
+  const sk=(await J('GET','/api/skills')).j.skills.filter(s=>s.status==='available');
+  if(!sk.length)break;
+  for(const s of sk){
+   const d=(await J('GET','/api/skills/'+s.id)).j;
+   for(const tk of d.tasks){
+    const t=TASKS.find(x=>x.id===tk.id),p=taskParams(t,me.seed);let ans;
+    if(t.kind==='sql')ans=t.ref(p);
+    else if(t.kind==='num'){const q=(await J('POST','/api/sql/run',{sql:t.refSql(p)})).j;const v=q.rows.map(x=>Number(x[0]));if(t.reduce==='median'){v.sort((a,b)=>a-b);const m=v.length>>1;ans=String(v.length%2?v[m]:(v[m-1]+v[m])/2)}else ans=String(v[0])}
+    else{const q=(await J('POST','/api/sql/run',{sql:t.factSql(p)})).j;
+     if(t.fact==='topcity'){const tot=q.rows.reduce((a,x)=>a+Number(x[1]),0);const [c,rev]=q.rows[0];ans=`The top city is ${c} with delivered revenue of ${rev}, which is ${(100*rev/tot).toFixed(1)}% of the total delivered revenue across all cities in the dataset. I recommend we prioritise inventory and marketing focus there while we investigate the weaker cities.`}
+     else{const [m,rev]=q.rows[0];ans=`The lowest month is ${m} with delivered revenue of ${rev}, clearly below the other months in the dataset. I would investigate whether a promotion, stock shortage or seasonal pattern explains it, and compare it to the neighbouring months before deciding on any action.`}}
+    const g=(await J('POST','/api/tasks/'+tk.id+'/submit',{answer:ans,pastes:0,runs:1,secs:30})).j;
+    if(!g.correct)ok('task '+tk.id,false,g.feedback);
+    if(g.skillVerified)verified++;
+   }}}
+ ok('all 6 skills verified',verified===6,verified+'/6');
+ r=await J('POST','/api/tasks/'+TASKS[0].id+'/submit',{answer:'SELECT 1'});ok('wrong answer graded incorrect',r.j.correct===false,r.j.feedback);
+ r=await J('POST','/api/passport');ok('passport issued',r.s===200,r.j.id);const pid=r.j.id;
+ r=await J('GET','/api/verify/'+pid);ok('credential verifies',r.j.valid===true,r.j.algorithm);
+ const forged={...r.j.payload,holder:{...r.j.payload.holder,name:'Mallory'}};
+ const v=await J('POST','/api/verify',{payload:forged,sig:r.j.sig});ok('tampered payload rejected',v.j.valid===false);
+ r=await J('GET','/.well-known/jwks.json');ok('jwks served',r.j.keys&&r.j.keys.length===1,r.j.keys[0].alg);
+ r=await J('POST','/api/tutor',{question:'x'});
+ const tr=await fetch('/api/tutor',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({question:'What is a LEFT JOIN?'})});const txt=await tr.text();ok('tutor streams grounded answer',txt.includes('"done":true')&&txt.includes('"grounded":true'));
+ const tr2=await fetch('/api/tutor',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({question:'Who won the cricket world cup?'})});const t2=await tr2.text();ok('tutor refuses off-topic',t2.includes('"mode":"refused"'));
+ // hiring loop
+ r=await J('GET','/api/jobs');ok('learner sees demo job',r.j.jobs.length>=1&&r.j.jobs[0].eligible===true);const jid=r.j.jobs[0].id;
+ r=await J('POST','/api/jobs/'+jid+'/apply');ok('apply',r.s===200);
+ r=await J('POST','/api/logout');
+ r=await J('POST','/api/login',{email:'hiring@demo.edusync.test',password:'demo-pass-123'});ok('employer login',r.s===200);
+ r=await J('GET','/api/employer/applications');const a=r.j.applications.find(x=>x.name==='Test L');ok('employer sees applicant',!!a);
+ r=await J('POST','/api/applications/'+a.id+'/status',{status:'hired'});ok('cannot skip stages',r.s===400,r.j.error);
+ for(const st of['shortlisted','interview','offer','hired'])r=await J('POST','/api/applications/'+a.id+'/status',{status:st});
+ r=await J('POST','/api/applications/'+a.id+'/status',{status:'retained'});ok('retained + fee 8% of 600000',r.s===200&&r.j.fee===48000,'fee='+r.j.fee);
+ r=await J('GET','/api/admin/metrics');ok('employer blocked from admin',r.s===403);
+ await J('POST','/api/logout');r=await J('POST','/api/login',{email:'admin@edusync.local',password:'admin-demo-123'});
+ r=await J('GET','/api/admin/metrics');const f=r.j.funnel;ok('admin funnel counts real learner',f[0].v===1&&f[7].v===1&&r.j.feesAccrued===48000,JSON.stringify(f.map(x=>x.v)));
+ r=await J('POST','/api/admin/creds/'+pid+'/revoke');r=await J('GET','/api/verify/'+pid);ok('revoked credential invalid',r.j.valid===false&&r.j.revoked===true);
+ r=await J('GET','/api/skills');ok('unauthenticated-role blocked',r.s===403);
+}catch(e){ok('exception',false,e.stack||e)}
+out.push(fails?'RESULT: '+fails+' FAILED':'RESULT: ALL PASSED');document.getElementById('o').textContent=out.join('\n');document.title=fails?'FAIL':'PASS';try{await fetch('/__result',{method:'POST',body:out.join('\n')})}catch(e){}})();
+</script></body></html>

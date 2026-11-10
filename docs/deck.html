@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>eduSync — Pitch Deck (10 slides)</title>
+<style>
+:root{--ind:#3730a3;--ind2:#4f46e5;--teal:#0d9488;--amber:#d97706;--ink:#0f172a;--mu:#64748b;--bd:#e2e8f0}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%;background:#0b1020;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;color:var(--ink);overflow:hidden}
+#stage{position:fixed;inset:0;display:grid;place-items:center}
+#deck{width:1280px;height:720px;position:relative;transform-origin:center center}
+.slide{position:absolute;inset:0;background:#fff;padding:56px 72px;display:none;flex-direction:column;border-radius:6px;overflow:hidden}
+.slide.on{display:flex}
+.slide.dark{background:linear-gradient(135deg,#1e1b4b,#3730a3 60%,#4f46e5);color:#fff}
+.tag{font:700 14px inherit;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:10px}
+.dark .tag{color:#5eead4}
+h1{font-size:64px;line-height:1.05;letter-spacing:-.02em}
+h2{font-size:42px;line-height:1.12;letter-spacing:-.01em;margin-bottom:22px;max-width:1050px}
+p.lead{font-size:24px;line-height:1.45;color:#334155;max-width:980px}
+.dark p.lead{color:#e0e7ff}
+.row{display:flex;gap:24px;flex:1;align-items:stretch}
+.col{flex:1}
+.card{border:1px solid var(--bd);border-radius:14px;padding:22px 24px;background:#f8fafc}
+.card h3{font-size:22px;margin-bottom:8px;color:var(--ind)}
+.card p,.card li{font-size:18px;line-height:1.45;color:#334155}
+ul{padding-left:22px} li{margin:6px 0}
+.big{font-size:56px;font-weight:800;color:var(--ind);letter-spacing:-.02em;line-height:1}
+.big.t{color:var(--teal)}
+.small{font-size:15px;color:var(--mu)}
+.foot{position:absolute;left:72px;right:72px;bottom:22px;display:flex;justify-content:space-between;font-size:13px;color:var(--mu)}
+.dark .foot{color:#a5b4fc}
+.ph{background:#fef3c7;color:#92400e;padding:1px 8px;border-radius:6px;font-weight:700}
+table{width:100%;border-collapse:collapse;font-size:18px} th,td{padding:10px 12px;border-bottom:1px solid var(--bd);text-align:left;vertical-align:top} th{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--mu);background:#f1f5f9}
+.flow{display:flex;align-items:center;gap:10px;margin:8px 0 26px}
+.step{flex:1;background:#fff;border:2px solid var(--ind);border-radius:14px;padding:14px 12px;text-align:center;font-weight:700;font-size:19px;color:var(--ind)}
+.step small{display:block;font-weight:500;color:var(--mu);font-size:14px;margin-top:4px}
+.step.hl{background:var(--teal);border-color:var(--teal);color:#fff}.step.hl small{color:#ccfbf1}
+.arrow{font-size:26px;color:#94a3b8}
+.node{display:inline-grid;place-items:center;width:62px;height:62px;border-radius:50%;color:#fff;font-weight:800;font-size:22px}
+.pill{display:inline-block;padding:4px 12px;border-radius:99px;font-weight:700;font-size:15px}
+.nav{position:fixed;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:9}
+.nav i{width:28px;height:5px;border-radius:3px;background:#475569;cursor:pointer}.nav i.on{background:#5eead4}
+.hint{position:fixed;top:10px;right:14px;color:#94a3b8;font-size:12px}
+@media print{
+ html,body{overflow:visible;background:#fff;height:auto}
+ #stage{position:static;display:block}
+ #deck{transform:none!important;width:1280px;height:auto}
+ .slide{display:flex!important;position:relative;height:720px;page-break-after:always;border-radius:0}
+ .nav,.hint{display:none}
+ @page{size:1280px 720px;margin:0}
+}
+</style>
+<script src="theme.js"></script><link rel="stylesheet" href="docs-dark.css"></head>
+<body><a href="../" style="position:fixed;right:14px;bottom:14px;z-index:99;background:#5b5bf0;color:#fff;padding:9px 16px;border-radius:99px;font:600 13px -apple-system,sans-serif;text-decoration:none;box-shadow:0 8px 20px rgba(0,0,0,.25)">← Back to eduSync app</a>
+<div class="hint">← → / click to navigate · P to print/PDF</div>
+<div id="stage"><div id="deck">
+
+<!-- 1 TITLE -->
+<div class="slide dark on">
+  <div class="tag">Pre-seed · 2026</div>
+  <div style="margin-top:110px">
+    <h1>eduSync</h1>
+    <p class="lead" style="margin-top:22px;font-size:34px;color:#fff;max-width:900px">We get entry-level data analysts hired — and employers pay only when a verified graduate starts.</p>
+    <p class="lead" style="margin-top:26px">From learning to earning. Starting with one role, in one city.</p>
+  </div>
+  <div class="foot"><span><span class="ph" style="background:#fde68a">[Founder name]</span> · <span class="ph" style="background:#fde68a">[email]</span></span><span>1 / 10</span></div>
+</div>
+
+<!-- 2 PROBLEM -->
+<div class="slide">
+  <div class="tag">The problem</div>
+  <h2>Graduates can't prove they're job-ready. Employers can't tell who is.</h2>
+  <div class="row">
+    <div class="card col"><h3>For the learner</h3><p>Spends months and money on courses and certificates. Applies to hundreds of roles. Gets a CV that looks like everyone else's.</p></div>
+    <div class="card col"><h3>For the employer</h3><p>Screens hundreds of CVs to fill one junior analyst seat. Degrees and course certificates don't predict who can write a JOIN.</p></div>
+    <div class="card col"><h3>The gap</h3><p>There is no trusted, portable proof of <b>demonstrated skill</b> between "finished a course" and "got hired".</p></div>
+  </div>
+  <p class="small" style="margin-top:16px"><span class="ph">[Add 1 real number from your interviews: e.g. "X CVs → Y interviews → 1 hire, Z weeks" ]</span></p>
+  <div class="foot"><span>eduSync</span><span>2 / 10</span></div>
+</div>
+
+<!-- 3 SOLUTION -->
+<div class="slide">
+  <div class="tag">The solution</div>
+  <h2>A verified path from "I want this job" to "I was hired"</h2>
+  <div class="flow">
+    <div class="step">Goal<small>pick a role</small></div><div class="arrow">→</div>
+    <div class="step">Learn<small>grounded AI tutor</small></div><div class="arrow">→</div>
+    <div class="step">Prove<small>graded tasks</small></div><div class="arrow">→</div>
+    <div class="step">Credential<small>signed, verifiable</small></div><div class="arrow">→</div>
+    <div class="step">Match<small>employer roles</small></div><div class="arrow">→</div>
+    <div class="step hl">Hired<small>employer-confirmed</small></div>
+  </div>
+  <div class="row">
+    <div class="card col"><h3>Skill graph, not a syllabus</h3><p>Every skill is a node with prerequisites. A node turns green only after the learner passes a graded task.</p></div>
+    <div class="card col"><h3>Proof employers can check</h3><p>Each credential is cryptographically signed. An employer verifies it in one click — and sees it fail if edited.</p></div>
+    <div class="card col"><h3>One metric: Verified Outcomes</h3><p>Not signups, not minutes watched. Learners who are verified <i>and</i> hired.</p></div>
+  </div>
+  <div class="foot"><span>eduSync</span><span>3 / 10</span></div>
+</div>
+
+<!-- 4 PRODUCT -->
+<div class="slide">
+  <div class="tag">Product · working prototype</div>
+  <h2>Built and clickable today: the full loop in one app</h2>
+  <div class="row">
+    <div class="card col">
+      <h3>My skill graph</h3>
+      <div style="display:flex;gap:10px;align-items:center;margin:10px 0 14px">
+        <span class="node" style="background:#16a34a">✓</span><span class="arrow">→</span>
+        <span class="node" style="background:#16a34a">✓</span><span class="arrow">→</span>
+        <span class="node" style="background:#d97706">…</span><span class="arrow">→</span>
+        <span class="node" style="background:#9ca3af;opacity:.5">🔒</span>
+      </div>
+      <p>7 skills for Junior Data Analyst. Locked until prerequisites are verified.</p>
+    </div>
+    <div class="card col">
+      <h3>Grounded tutor + graded tasks</h3>
+      <p>Answers only from approved curriculum, cites the source, and says <i>"I won't guess"</i> when it can't.</p>
+      <p style="margin-top:10px">Pass ≥ 2/3 → skill verified → credential signed.</p>
+    </div>
+    <div class="card col">
+      <h3>Passport + employer view</h3>
+      <p>Employer verifies the signature, sees the role match, and confirms the hire. That click is a Verified Outcome.</p>
+      <p style="margin-top:10px"><span class="pill" style="background:#dcfce7;color:#166534">Tamper → INVALID</span></p>
+    </div>
+  </div>
+  <p class="small" style="margin-top:14px">Working app: <b>edusync-app/</b> (npm start). Real SQL grading on per-learner data, signed credentials, hiring pipeline, live updates; 66 automated checks pass. <b>Not yet:</b> any real employer, hire or revenue; live Claude tutor tested against a mock only. Demo it live.</p>
+  <div class="foot"><span>eduSync</span><span>4 / 10</span></div>
+</div>
+
+<!-- 5 WHY NOW -->
+<div class="slide">
+  <div class="tag">Why now</div>
+  <h2>AI made learning cheap. Trust in proof is now the scarce thing.</h2>
+  <div class="row">
+    <div class="card col"><h3>1 · Tutoring is commodity</h3><p>Anyone can learn SQL with a free AI tutor. That makes the <b>credential and the hire</b> the valuable part, not the lesson.</p></div>
+    <div class="card col"><h3>2 · Employers want skills-based hiring</h3><p>Trust in degrees is eroding; employers are looking for demonstrated skill signals.</p></div>
+    <div class="card col"><h3>3 · Cheap, mobile-first reach</h3><p>Low-cost inference plus phones makes a free-to-learner model viable in emerging markets.</p></div>
+  </div>
+  <p class="small" style="margin-top:16px"><span class="ph">[Cite 1–2 sources for the skills-based-hiring claim before sending — do not send uncited.]</span></p>
+  <div class="foot"><span>eduSync</span><span>5 / 10</span></div>
+</div>
+
+<!-- 6 MARKET -->
+<div class="slide">
+  <div class="tag">Market</div>
+  <h2>We start narrow, in a market that's already paying for hiring</h2>
+  <div class="row">
+    <div class="col">
+      <div class="card" style="margin-bottom:16px"><h3>Top-down (directional)</h3>
+        <p><span class="big">~$190–215B</span><br>Global EdTech, 2025–26</p>
+        <p style="margin-top:8px"><span class="big t" style="font-size:40px">~$752B</span> &nbsp;recruitment &amp; staffing, 2025</p>
+        <p class="small" style="margin-top:8px">Third-party estimates (Grand View, TBRC, Dataintelo); methods differ. Context only — not our target.</p></div>
+    </div>
+    <div class="col">
+      <div class="card"><h3>Bottom-up (our real market)</h3>
+        <table><tr><th>Step</th><th>Value</th></tr>
+        <tr><td>Junior analyst hires / yr in launch city</td><td><span class="ph">[N]</span></td></tr>
+        <tr><td>Share via campus / agencies / job boards</td><td><span class="ph">[%]</span></td></tr>
+        <tr><td>Avg fee per hire</td><td><span class="ph">[₹ / $]</span></td></tr>
+        <tr><td><b>Wedge SOM</b></td><td><b><span class="ph">[N × % × fee]</span></b></td></tr></table>
+        <p class="small" style="margin-top:10px">Fill from hiring-manager interviews. Expand: more roles → more cities.</p></div>
+    </div>
+  </div>
+  <div class="foot"><span>eduSync</span><span>6 / 10</span></div>
+</div>
+
+<!-- 7 BUSINESS MODEL -->
+<div class="slide">
+  <div class="tag">Business model</div>
+  <h2>Free for learners. Employers pay per verified hire.</h2>
+  <div class="row">
+    <div class="card col"><h3>Who pays</h3>
+      <ul><li><b>Learner:</b> free (acquisition + data)</li><li><b>Employer:</b> success fee on a confirmed hire retained 30+ days</li><li><b>Later:</b> verification API, institution licences, premium coaching</li></ul>
+      <p class="small" style="margin-top:12px">We avoid charging jobseekers a salary share: restricted or disfavoured in many jurisdictions.</p></div>
+    <div class="card col"><h3>Illustrative economics per hire</h3>
+      <table><tr><th>Line</th><th>Assumption</th></tr>
+      <tr><td>First-year salary</td><td><span class="ph">[₹/$ X]</span></td></tr>
+      <tr><td>Fee</td><td>8–10% of first-year pay</td></tr>
+      <tr><td>Cost per active learner (AI + infra)</td><td><span class="ph">[measure in pilot]</span></td></tr>
+      <tr><td>Learners per hire</td><td><span class="ph">[measure in pilot]</span></td></tr></table>
+      <p class="small" style="margin-top:10px">Unit economics are a pilot output, not an assumption. We will report cost per <b>hire</b>.</p></div>
+  </div>
+  <div class="foot"><span>eduSync</span><span>7 / 10</span></div>
+</div>
+
+<!-- 8 COMPETITION / MOAT -->
+<div class="slide">
+  <div class="tag">Competition &amp; defensibility</div>
+  <h2>Others sell content. We sell a hire — and earn employer trust.</h2>
+  <table>
+    <tr><th>Player type</th><th>What they do well</th><th>Where we differ</th></tr>
+    <tr><td>MOOCs / certificates</td><td>Reach, brand</td><td>Certificates are not tied to a hire</td></tr>
+    <tr><td>Bootcamps / outcome-linked programs</td><td>Job focus, human support</td><td>Capital-heavy, cohort-based; we are software-led and employer-paid</td></tr>
+    <tr><td>AI tutors</td><td>Free, great UX</td><td>A tutor is a tool; we own verification + placement</td></tr>
+    <tr><td>Hiring / skills platforms</td><td>Employer relationships</td><td>Not learner-first; no guided path to proof</td></tr>
+  </table>
+  <div class="card" style="margin-top:16px"><h3>Moat (earned, not claimed)</h3>
+    <p>1) Employer trust in our credential, built one hire at a time. 2) Outcome data: which proof-of-work predicts a retained hire. 3) Employer-side workflow lock-in. <span class="small">Network effects begin only after first cohorts; we do not claim them today.</span></p></div>
+  <div class="foot"><span>eduSync</span><span>8 / 10</span></div>
+</div>
+
+<!-- 9 TRACTION / PLAN -->
+<div class="slide">
+  <div class="tag">Traction &amp; plan</div>
+  <h2>Pre-launch. Here is how we prove it in 90 days.</h2>
+  <div class="row">
+    <div class="card col"><h3>Done</h3>
+      <ul><li>Working app of the full loop (66 tests passing)</li><li>Signed, tamper-evident credentials</li><li>Product, architecture, data model specs</li><li><span class="ph">[LOIs / interviews so far: N]</span></li></ul></div>
+    <div class="card col"><h3>Next 90 days</h3>
+      <ul><li><b>Wk −4–0:</b> 10 employer demos → 3 LOIs</li><li><b>Wk 1–6:</b> Curriculum + tutor evals + assessments</li><li><b>Wk 7–9:</b> Credential verify page; employer posting</li><li><b>Wk 10–12:</b> Pilot cohort of 100 learners</li></ul></div>
+    <div class="card col"><h3>Gates (we stop if missed)</h3>
+      <ul><li>≥ 3 employer LOIs before building jobs module</li><li>D30 ≥ 25% of learners who pass 1st assessment</li><li><b>≥ 5 hires from ≥ 3 employers</b></li></ul></div>
+  </div>
+  <div class="foot"><span>eduSync</span><span>9 / 10</span></div>
+</div>
+
+<!-- 10 TEAM / ASK -->
+<div class="slide dark">
+  <div class="tag">Team &amp; ask</div>
+  <h2 style="color:#fff">We're raising <span class="ph" style="background:#fde68a">[$X]</span> to prove the hiring loop in one city.</h2>
+  <div class="row">
+    <div class="card col" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2)"><h3 style="color:#5eead4">Use of funds · <span class="ph" style="background:#fde68a">[18–24 mo runway]</span></h3>
+      <ul style="color:#e0e7ff"><li style="color:#e0e7ff">Engineering &amp; AI — 55%</li><li style="color:#e0e7ff">Employer &amp; learner acquisition — 25%</li><li style="color:#e0e7ff">Ops, compliance, legal — 10%</li><li style="color:#e0e7ff">Buffer — 10%</li></ul></div>
+    <div class="card col" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2)"><h3 style="color:#5eead4">Team</h3>
+      <ul><li style="color:#e0e7ff"><span class="ph" style="background:#fde68a">[Founder — why you]</span></li><li style="color:#e0e7ff"><span class="ph" style="background:#fde68a">[Co-founder / CTO]</span></li><li style="color:#e0e7ff"><span class="ph" style="background:#fde68a">[Advisor in hiring / L&amp;D]</span></li></ul></div>
+    <div class="card col" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2)"><h3 style="color:#5eead4">Milestones to next round</h3>
+      <ul><li style="color:#e0e7ff">Repeatable hires from ≥ 3 employers</li><li style="color:#e0e7ff">Cost per hire &amp; payback measured</li><li style="color:#e0e7ff">Second role launched</li></ul></div>
+  </div>
+  <p class="lead" style="margin-top:22px;font-size:26px;color:#fff">Where it goes: one role → many roles → an operating system for verified capability.</p>
+  <div class="foot"><span>eduSync · From learning to earning</span><span>10 / 10</span></div>
+</div>
+
+</div></div>
+<div class="nav" id="dots"></div>
+<script>
+const sl=[...document.querySelectorAll('.slide')];let i=0;
+const dots=document.getElementById('dots');
+sl.forEach((_,k)=>{const d=document.createElement('i');d.onclick=()=>show(k);dots.appendChild(d)});
+function show(n){i=Math.max(0,Math.min(sl.length-1,n));sl.forEach((s,k)=>s.classList.toggle('on',k===i));[...dots.children].forEach((d,k)=>d.classList.toggle('on',k===i));location.hash=i+1}
+function fit(){const s=Math.min(innerWidth/1280,innerHeight/720)*0.97;document.getElementById('deck').style.transform=`scale(${s})`}
+addEventListener('resize',fit);fit();
+addEventListener('keydown',e=>{if(['ArrowRight','PageDown',' ','Enter'].includes(e.key)){e.preventDefault();show(i+1)}
+ else if(['ArrowLeft','PageUp','Backspace'].includes(e.key)){e.preventDefault();show(i-1)}
+ else if(e.key==='Home')show(0);else if(e.key==='End')show(sl.length-1);else if(e.key.toLowerCase()==='p')print()});
+document.getElementById('deck').addEventListener('click',e=>{if(e.target.closest('a'))return;e.clientX>innerWidth/2?show(i+1):show(i-1)});
+show((parseInt(location.hash.slice(1))||1)-1);
+</script>
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>eduSync — Founder Validation: will it pass or fail?</title>
+<style>
+:root{--ind:#3730a3;--teal:#0d9488;--red:#b91c1c;--amb:#b45309;--grn:#15803d;--ink:#0f172a;--mu:#64748b;--bd:#e2e8f0;--bg:#f6f7fb}
+*{box-sizing:border-box}body{margin:0;font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--bg)}
+.wrap{max-width:1020px;margin:0 auto;padding:28px 22px 80px}
+h1{font-size:34px;letter-spacing:-.02em;margin:0 0 4px}h2{font-size:24px;margin:44px 0 6px;letter-spacing:-.01em;border-top:3px solid var(--ind);padding-top:14px}h3{font-size:17px;margin:0 0 6px}
+.sub{color:var(--mu)}.card{background:#fff;border:1px solid var(--bd);border-radius:14px;padding:20px 22px;margin:14px 0}
+.verdict{background:#450a0a;color:#fff;border-radius:16px;padding:28px 30px;margin:22px 0}
+.verdict .big{font-size:30px;font-weight:800;line-height:1.2;letter-spacing:-.02em}.verdict p{color:#fecaca;margin:10px 0 0}
+.verdict .q{background:rgba(255,255,255,.1);border-left:4px solid #fca5a5;padding:12px 16px;margin-top:16px;border-radius:0 8px 8px 0;color:#fff;font-size:17px}
+table{width:100%;border-collapse:collapse;font-size:14.5px}th,td{padding:9px 11px;border-bottom:1px solid var(--bd);text-align:left;vertical-align:top}th{font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--mu);background:#f8fafc}
+.tag{display:inline-block;padding:2px 10px;border-radius:99px;font-size:12px;font-weight:700;white-space:nowrap}
+.hi{background:#fee2e2;color:#991b1b}.me{background:#fef3c7;color:#92400e}.lo{background:#dcfce7;color:#166534}.nt{background:#e5e7eb;color:#374151}
+.grid{display:grid;gap:14px}.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}@media(max-width:800px){.g2,.g3{grid-template-columns:1fr}}
+.score{display:grid;grid-template-columns:230px 1fr 54px;gap:12px;align-items:center;margin:8px 0;font-size:14.5px}
+.meter{height:12px;background:#e5e7eb;border-radius:6px;overflow:hidden}.meter i{display:block;height:100%}
+.fail{border-left:5px solid var(--red)}.f-h{font-weight:700}
+.note{font-size:13px;color:var(--mu)}.ver{font-size:12px;font-weight:700;padding:1px 7px;border-radius:5px;background:#dbeafe;color:#1e40af}.jud{font-size:12px;font-weight:700;padding:1px 7px;border-radius:5px;background:#fef3c7;color:#92400e}
+.bars div{display:grid;grid-template-columns:80px 1fr 110px;gap:10px;align-items:center;margin:6px 0;font-size:14px}.bars b{display:block;height:22px;border-radius:5px;background:linear-gradient(90deg,#4f46e5,#0d9488)}
+.mx{display:grid;grid-template-columns:90px repeat(3,1fr);gap:4px;font-size:12.5px}.mx>div{padding:8px;border-radius:6px;min-height:54px}.mx .h{background:none;font-weight:700;color:var(--mu);min-height:0}
+.r1{background:#dcfce7}.r2{background:#fef3c7}.r3{background:#fee2e2}
+code{background:#f1f5f9;padding:1px 6px;border-radius:5px;font-size:13px}
+ol.steps li{margin:6px 0}
+@media print{body{background:#fff}.card{break-inside:avoid}h2{break-before:auto}}
+</style><script src="theme.js"></script><link rel="stylesheet" href="docs-dark.css"></head><body><a href="../" style="position:fixed;right:14px;bottom:14px;z-index:99;background:#5b5bf0;color:#fff;padding:9px 16px;border-radius:99px;font:600 13px -apple-system,sans-serif;text-decoration:none;box-shadow:0 8px 20px rgba(0,0,0,.25)">← Back to eduSync app</a><div class="wrap">
+
+<h1>eduSync — Founder Validation</h1>
+<p class="sub">Written as a skeptical founder who has to decide whether to put the next two years into this. Reviewed: the whole <code>edusync/</code> workspace (strategy, product, architecture, legal, brand, research, 15-slide deck, financial model). Date: 2026-11-10.</p>
+
+<div class="verdict">
+  <div class="big">Verdict: the plan as written will fail. A much narrower version has a small but real chance, and you can find out which one you have in 90 days.</div>
+  <p>"As written" means: global, six revenue layers, 10 million learners, $478.7M revenue in Year 5, 60% EBITDA margin. Nothing in the folder supports that plan. The only part with a real shot is the thin slice inside it: one role (Junior Data Analyst), one city, employers paying only for a hire that is still employed after the retention period.</p>
+  <div class="q"><b>The sentence you can say out loud:</b><br>"The global edtech version of eduSync will not work, and I'm not going to pretend it will. What I can still test is one narrow thing: will real employers hire people who pass our graded tasks and pay us when they stay? I'll know in 90 days, and if the answer is no, I stop."</div>
+  <p><b>My probabilities (judgment, not data):</b> global plan as written succeeds: under 1%. Narrow wedge gets <i>5 retained hires from 3 employers</i> within ~6 months of real effort: about 15%. That wedge grows into a venture-scale company: about 2–3%. Those numbers move a lot with the first 10 employer conversations (section 9).</p>
+</div>
+
+<div class="card"><b>How to read this.</b> <span class="ver">CHECKED</span> = arithmetic or fact I recomputed from your files. <span class="jud">JUDGMENT</span> = my opinion from how ventures like this usually go; I have no data on your market. I have not interviewed a single employer or learner for you, and neither does anything in the folder. That absence is the biggest finding below.</div>
+
+<h2>1. The scorecard</h2>
+<div class="card" id="score"></div>
+<p class="note">Scale 0–10, where 5 means "an investor would take the meeting but not the deal". <span class="jud">JUDGMENT</span> throughout.</p>
+
+<h2>2. Why it fails: every failure mode, ranked</h2>
+<p class="sub">If someone asks "how could this fail?", this is the complete answer. Each one has a test that the MVP (or a conversation) can run, and a kill rule.</p>
+<div id="modes"></div>
+
+<h2>3. Financial model audit</h2>
+<div class="card">
+<div class="grid g2"><div>
+<h3>Revenue, Year 1 to 5 <span class="ver">CHECKED</span></h3>
+<div class="bars" id="rev"></div>
+<p class="note">Year-over-year multiples: ×18.3, ×8.3, ×4.9, ×3.3. Exceptional companies reach these; plans that assume them with no pilot evidence rarely do.</p></div>
+<div><h3>What the numbers imply <span class="ver">CHECKED</span></h3>
+<table>
+<tr><th>Metric</th><th>Value</th><th>Reading</th></tr>
+<tr><td>Y5 EBITDA margin</td><td>288.2 / 478.7 = <b>60.2%</b></td><td>Education, staffing and marketplaces rarely sustain this. It looks like a spreadsheet outcome, not an operating one.</td></tr>
+<tr><td>Y5 revenue per employee</td><td>$478.7M / 350 = <b>$1.37M</b></td><td>Far above normal for a business that needs human support, employer sales and compliance.</td></tr>
+<tr><td>Y1 placements vs learners</td><td>50 / 50,000 = <b>0.1%</b></td><td>Plausible for a first pilot.</td></tr>
+<tr><td>Y5 placements vs learners</td><td>500,000 / 10,000,000 = <b>5%</b></td><td>50× the Y1 rate, and 10,000× the Y1 placement count. Nothing explains how placement rate jumps.</td></tr>
+<tr><td>Employers at Y5</td><td>900</td><td>500,000 placements through 900 employers is ~555 hires per employer per year, so it quietly assumes huge enterprise or government volume that nobody has signed.</td></tr>
+<tr><td>Y1 EBITDA</td><td>−$1.085M on $195k</td><td>Burn is ~5.6× revenue. Fine for pre-seed, but the raise must match 18–24 months of runway.</td></tr>
+</table></div></div>
+<h3 style="margin-top:14px">What's wrong with the model, in order</h3>
+<ol class="steps"><li><b>It has no measured inputs.</b> Placement rate, learner-to-hire conversion, cost per learner, fee per hire and sales cycle are all assumed. The pilot should replace every one with a measured number.</li>
+<li><b>Revenue is top-down growth, not bottom-up.</b> There is no "N employers × H hires × fee" tied to an employer pipeline.</li>
+<li><b>Six revenue layers on a company with zero revenue.</b> Each layer is a separate business (B2C, institutions, employers, placement, government, marketplace). Pick the one that pays first.</li>
+<li><b>Government and institution revenue have 6–18 month sales cycles.</b> <span class="jud">JUDGMENT</span> They cannot be Year 2 revenue for a team of ~10.</li>
+<li><b>Fee on salary can be illegal or restricted.</b> Charging jobseekers a share of salary is restricted in many places (see ILO Convention 181 principle: workers should not be charged fees). Employer-paid is the safe lane. I have only flagged this; local legal advice is required.</li></ol>
+<p class="note">I could not reconcile the placement-fee revenue line to 500,000 placements without knowing the average salary assumption in the spreadsheet; ask whoever built it to show the formula chain from placements to revenue.</p>
+</div>
+
+<h2>4. The assumptions that must be true</h2>
+<p class="sub">This is the core of the business. If one of the red ones is false, the rest doesn't matter.</p>
+<div class="card"><table id="assume"></table></div>
+
+<h2>5. Risk matrix</h2>
+<div class="card"><div class="mx" id="mx"></div><p class="note">Position is my judgment. Numbers refer to failure modes in section 2.</p></div>
+
+<h2>6. Competition, honestly</h2>
+<div class="card"><table>
+<tr><th>Who</th><th>Why they beat you</th><th>Where you might still win</th></tr>
+<tr><td>Free AI tutors (ChatGPT, Claude, Gemini, Khanmigo-style)</td><td>A learner can already learn SQL for free with excellent explanations. Your tutor is not the product and will not be a moat.</td><td>Nowhere on tutoring. Win only on <b>verified outcome</b>.</td></tr>
+<tr><td>Coursera / Udemy / Google & IBM certificates</td><td>Brand, distribution, employer recognition, huge catalogs.</td><td>Their credential is attendance. Yours is graded work on a per-learner dataset. Only matters if an employer cares.</td></tr>
+<tr><td>Bootcamps and outcome-linked programs (e.g. Lambda School-style ISAs, Indian upskill-and-place programs)</td><td>They already sell "get hired" and have hiring partners and human mentors.</td><td>Lower cost with software, but the Lambda School ISA story shows outcome-linked models can blow up on economics and trust. <i>From general knowledge; verify current status of each.</i></td></tr>
+<tr><td>LinkedIn, Naukri, Indeed, Wellfound, campus placement cells</td><td>Employers already live there; adding a field "assessed by eduSync" is trivial for them.</td><td>A real skills signal could plug into them. Risk: they copy it.</td></tr>
+<tr><td>Skills-assessment vendors (HackerRank, Codility-style) </td><td>Employers already pay for assessments and trust them.</td><td>Assessment is their business. You would need to prove yours predicts retention better.</td></tr>
+</table><p class="note">The honest summary: your entire value rests on one thing none of them have, namely a <b>track record of employer-confirmed, retained hires</b>. That does not exist yet.</p></div>
+
+<h2>7. Who would say yes, who would say no</h2>
+<div class="card"><table id="inv"></table></div>
+
+<h2>8. What the MVP proves, and what it cannot</h2>
+<div class="card">
+<p>The app in <code>edusync-app/</code> is built to measure the loop, not to look finished. 66 automated end-to-end checks pass against the real server (grading, SQL sandbox attacks, authz, tamper detection, realtime events, fee ledger).</p>
+<table id="loop"></table>
+<h3 style="margin-top:16px">What the code cannot prove</h3>
+<ul><li>That an employer trusts the credential. Only an employer saying "I interviewed because of it" proves that.</li>
+<li>That the person who passed is the person who did the work. Paste/time signals are shown to employers but can be gamed.</li>
+<li>That the live Claude tutor behaves well; I tested the integration against a mock only, and the UI has not been visually checked by me (the browser tool would not connect).</li>
+<li>Retention and fee collection. The ledger records a fee only after an employer marks someone retained. Real invoicing is manual.</li></ul></div>
+
+<h2>9. The 90-day test, with stop rules</h2>
+<div class="card"><table id="plan"></table></div>
+<div class="card" style="border-left:5px solid var(--grn)"><h3>What would upgrade my verdict</h3>
+<ul><li>3+ employers sign a written LOI to interview graduates <i>before</i> you build more.</li>
+<li>5 learners reach interviews <i>because</i> of the credential (employer says so in writing).</li>
+<li>Cost per retained hire (AI + ops + acquisition) is below the fee. Compute this honestly.</li></ul></div>
+<div class="card" style="border-left:5px solid var(--red)"><h3>What would make it a confirmed fail</h3>
+<ul><li>After 10 employer conversations, fewer than 3 will even pilot. The pain is not real enough.</li>
+<li>Learners pass assessments but employers decline to interview them. The credential has no value.</li>
+<li>Hires happen but nobody can show eduSync caused them. Employers would have hired them anyway, so nobody pays.</li></ul></div>
+
+<h2>10. What to say when you must tell someone it will fail</h2>
+<div class="card">
+<p><b>Short version (use this):</b> "As planned, global and six revenue streams at once, it will fail. The financial model has no measured inputs and assumes a placement rate that jumps 50× with no explanation. What survives is a single test: one role, one city, employers pay only for retained hires. We will know in 90 days. If three employers will not commit by day 30, we stop."</p>
+<p><b>If they push back "so it's a bad idea?":</b> "The idea is fine. The plan is not. A good idea with an unproven loop is a hypothesis. We turned it into a test."</p>
+<p><b>What not to say:</b> "It will fail" with no conditions. It is not proven that it fails. It is proven that nothing in the folder shows it works.</p></div>
+
+<h2>11. What I could not verify</h2>
+<div class="card"><ul>
+<li>Market sizes in the deck ($190–215B edtech, ~$752B recruitment) come from third-party estimates with different methods. I treated them as context only.</li>
+<li>The team, funding status, and any employer conversations are not in the folder.</li>
+<li>Competitor facts above are from general knowledge, not fresh research. Re-check before showing anyone.</li>
+<li>Legal conclusions on placement fees are directional, not advice.</li></ul></div>
+
+</div>
+<script>
+const score=[["Problem is real & painful",7,"Junior hiring is noisy for employers and opaque for learners. Believable, but not yet shown with a single interview."],
+["Solution is differentiated",4,"Tutor and content are commodity. Verified outcomes are the only differentiator, and they do not exist yet."],
+["Evidence so far",1,"No employer, learner or revenue data in the folder."],
+["Market / wedge clarity",6,"The Junior Data Analyst wedge is sensible. The global framing hurts."],
+["Business model viability",4,"Employer-paid success fee is the right lane. Too many other layers; fee legality varies."],
+["Financial model credibility",2,"Unmeasured inputs, 60% margin, 5% placement rate at scale."],
+["Defensibility / moat",3,"Moat is employer trust, which is earned slowly. Network effects are claimed, not real."],
+["Execution risk (solo / small team)",3,"Two-sided cold start plus AI plus compliance is a lot. Team is not in the folder."],
+["Fundability today",3,"Fails most investor screens as-is. Passes a few angels and accelerators with the narrow plan and a live demo."],
+["Learnability (can the test run fast?)",8,"The MVP measures the loop, and a 90-day test is cheap."]];
+const col=v=>v>=6?'#16a34a':v>=4?'#d97706':'#dc2626';
+document.getElementById('score').innerHTML=score.map(([k,v,t])=>`<div class="score"><span><b>${k}</b></span><span><div class="meter"><i style="width:${v*10}%;background:${col(v)}"></i></div><span class="note">${t}</span></span><b style="color:${col(v)}">${v}/10</b></div>`).join('')+`<p style="margin-top:12px"><b>Average ${(score.reduce((a,x)=>a+x[1],0)/score.length).toFixed(1)}/10.</b> Strong on "can we find out cheaply" (8), weak on everything that needs evidence.</p>`;
+
+const modes=[
+["F1","No employer will pay for a hire from you","hi","Employers hire through channels they trust. Why would a hiring manager spend time on an unknown credential? Cold start: no hires means no trust means no hires.","Talk to 10 hiring managers before more building. Ask what would make them interview a candidate with this credential.","<3 of 10 agree to pilot by day 30: stop."],
+["F2","The credential carries no weight","hi","Skills proof that employers don't recognise is a PDF. Your signature is real, but trust is social, not cryptographic.","Employer reads a candidate view in a live call, says whether it changes their decision. Track 'interview because of eduSync' in writing.","0 interviews attributable to the credential after 30 learners with passports: stop."],
+["F3","Learners pass, but are not job-ready","hi","Six synthetic-data tasks are far from real analyst work (messy business questions, stakeholders, tools like Excel/BI).","Give 5 passers a real-world task from a partner employer and measure the gap.","Employer interviewers rate <3/5 on the first 10 candidates: rebuild assessments or stop."],
+["F4","The signal can be cheated","me","Per-learner data blocks copying, but a learner can run the task through an LLM. Paste/time signals are gameable.","Add a proctored 20-min live follow-up for finalists. Compare pass rates with and without LLM help.","If employers find passers can't explain their own SQL, credibility is gone."],
+["F5","Two-sided cold start","hi","Learners come only if jobs exist; employers come only if learners exist. Money runs out before the loop closes.","Fix employers first (LOIs), then recruit exactly as many learners as the LOIs can absorb.","<3 LOIs before building the jobs module: stop."],
+["F6","Unit economics don't close","me","AI tutor, support, assessment ops and employer sales per retained hire may exceed the fee (8–15% of a junior salary).","Track cost per retained hire from the first cohort. The admin dashboard shows hires, fees and tutor use.","Cost per hire > fee at pilot scale with no clear path to halve it: stop or change model."],
+["F7","Retention kills the revenue","me","You only get paid if the hire stays. Early attrition in junior roles is common, and employers may dispute.","Keep the retention window explicit in the contract; log start dates from day one (built).","Retention <60% at 30 days: the fee model is broken."],
+["F8","Disintermediation","me","Employer meets the candidate through you, then hires directly and skips the fee.","Contract clause plus value after the intro (payroll, credential verify). Accept some leakage.","If most hires happen off-platform, charge for verification, not placement."],
+["F9","Fee legality / regulation","me","Placement fees on jobseekers are restricted in many places; AI-in-hiring has fairness rules.","Employer-paid only. Get local legal review before charging.","Legal blocks employer fees in the launch city: pick another city."],
+["F10","Free AI makes learning content worthless","hi","Anyone can learn SQL for free. If your pitch leans on content you have no defence.","Never sell content. Sell verified outcome.","If the pitch still centres on lessons, rewrite it."],
+["F11","Founder-market fit unknown","me","Folder has no team, no hiring-side experience, no distribution. Hiring is a relationships business.","Add an advisor who has hired junior analysts; put names on the deck.","No hiring-side insider within 60 days: expect slow employer progress."],
+["F12","Scope sprawl","me","Six revenue layers, global ambition, many product areas, 132 documents. Documentation exceeds evidence.","Freeze everything except the Junior Data Analyst loop until the gates are met.","Any new feature before the first retained hire: stop and reprioritise."],
+["F13","Credential trust incident","lo","One fake, leaked or wrongly issued credential could end employer trust.","Revocation, public verify and tamper test exist. Add identity checks for finalists.","—"],
+["F14","Data / privacy","lo","Learner PII and assessment data; employer access must be consented and scoped.","Employers see only candidates who applied to them (enforced and tested).","Before real users: privacy notice, deletion path, DPA."]];
+document.getElementById('modes').innerHTML=modes.map(([id,t,r,w,test,kill])=>`<div class="card fail"><div class="f-h">${id} · ${t} <span class="tag ${r}">${r=='hi'?'likely and fatal':r=='me'?'possible':'manageable'}</span></div><p style="margin:6px 0">${w}</p><div class="grid g2"><div class="note"><b>How to test:</b> ${test}</div><div class="note"><b>Kill rule:</b> ${kill}</div></div></div>`).join('');
+
+const rev=[["Y1",0.195],["Y2",3.574],["Y3",29.62],["Y4",144.16],["Y5",478.7]];
+document.getElementById('rev').innerHTML=rev.map(([y,v])=>`<div><span>${y}</span><b style="width:${Math.max(2,v/478.7*100)}%"></b><span>$${v>=1?v.toFixed(v>100?1:2)+'M':(v*1000).toFixed(0)+'k'}</span></div>`).join('');
+
+const A=[["Employers will pay for a verified hire","hi","Cold outreach to 10 hiring managers; ask for a pilot LOI","≥3 LOIs"],
+["Employers trust our credential enough to interview","hi","Show a candidate view live; ask what would change their decision","≥5 interviews attributed"],
+["Graded tasks predict on-the-job ability","hi","Partner employer rates 10 passers","avg ≥3.5/5"],
+["A learner can be moved from signup to passport in reasonable time","me","Funnel in admin dashboard","≥25% of starters verify a skill; ≥10% earn a passport"],
+["A learner is hired within the pilot window","hi","Applications → hired → retained in the pipeline","≥5 hires, ≥3 employers"],
+["Cost per retained hire < fee","me","Add AI + support + acquisition cost per cohort","Cost < 60% of fee"],
+["Employers don't bypass us","me","Contract + tracking of introductions","<30% leakage"],
+["Learners come without paid ads","me","Source tracking on signup","≥40% organic/referral"]];
+document.getElementById('assume').innerHTML='<tr><th>Must be true</th><th>Risk</th><th>How to test</th><th>Pass threshold</th></tr>'+A.map(([a,r,t,p])=>`<tr><td><b>${a}</b></td><td><span class="tag ${r}">${r=='hi'?'high':'medium'}</span></td><td>${t}</td><td>${p}</td></tr>`).join('');
+
+const mx=[["High impact",["F1 F2 F5","F3 F10","F11"],["F6 F7","F4"],["F12"]],["Medium",["F8 F9"],["F14"],[]],["Low",[],["F13"],[]]];
+document.getElementById('mx').innerHTML='<div class="h"></div><div class="h">Unlikely</div><div class="h">Possible</div><div class="h">Likely</div>'+
+[["Fatal",["F13"],["F6 F7 F8 F9 F11"],["F1 F2 F3 F5 F10"]],["Serious",["F14"],["F4 F12"],[]]].map(([l,a,b,c])=>`<div class="h">${l}</div><div class="r1">${a.join(' ')}</div><div class="r2">${b.join(' ')}</div><div class="r3">${c.join(' ')}</div>`).join('');
+
+document.getElementById('inv').innerHTML='<tr><th>Who</th><th>Likely answer today</th><th>Why</th></tr>'+[
+["Pre-seed / angel (operators, ex-HR tech)","Maybe","If you show 3 LOIs and the live loop. They back founders and speed. Without LOIs, no."],
+["Accelerator (e.g. YC-style)","Maybe","Likes narrow wedge and a working product. Will attack 'why you' and 'who pays'. Needs a founder story and traction in weeks."],
+["Seed VC (edtech / marketplace)","No","No revenue, no employer proof, no metrics. Revisit after a handful of retained hires."],
+["Impact / education funds","Maybe","Mission fits. They want learner outcomes data and fairness policies."],
+["Strategic (staffing, HR platforms)","Watch","Interest only after proof; they may copy you."],
+["Grants / government","Maybe later","Long cycles. Not a Year 1 revenue source."]].map(([a,b,c])=>`<tr><td><b>${a}</b></td><td><span class="tag ${b=='No'?'hi':b=='Maybe'||b=='Maybe later'?'me':'nt'}">${b}</span></td><td>${c}</td></tr>`).join('');
+
+document.getElementById('loop').innerHTML='<tr><th>Loop step</th><th>What the MVP measures</th><th>Proves it if…</th><th>Where</th></tr>'+[
+["Learn","Task attempts, tutor use, refusals","≥25% of starters verify a skill","Admin: funnel, tutor stats"],
+["Prove","Per-skill pass rates on per-learner data","Pass rates not ~0% or ~100%","Admin: task table"],
+["Credential","Signed credentials viewed/verified","Employers open verify pages","/verify/ES-…"],
+["Match","Applications to real jobs","Real employers post real jobs","Employer jobs + SSE alerts"],
+["Hired","Pipeline status, start date","≥5 hires, ≥3 employers","Employer pipeline"],
+["Retained / paid","Retention date, fee ledger","Fee accrues on retained hires","Admin: fees accrued"]].map(r=>`<tr>${r.map((c,i)=>`<td>${i==0?'<b>'+c+'</b>':c}</td>`).join('')}</tr>`).join('');
+
+document.getElementById('plan').innerHTML='<tr><th>When</th><th>Do</th><th>Gate</th><th>If missed</th></tr>'+[
+["Days 1–14","10 hiring-manager conversations; show the live app","3 agree to a pilot","Stop building. Reconsider the problem."],
+["Days 15–30","Sign LOIs; recruit exactly enough learners; legal check on fee","≥3 LOIs","Stop or pivot to a different role/city."],
+["Days 31–60","Run 50–100 learners through the app; measure funnel","≥25% verify a skill","Fix content/assessments or stop."],
+["Days 61–90","Match, interview, hire; log in pipeline","≥5 hires, ≥3 employers","Do not raise. Reassess model."],
+["Day 120+","Retention checks, invoice first fee","≥1 retained hire paid","No retained hire: the model is unproven."]].map(r=>`<tr>${r.map((c,i)=>`<td>${i==0?'<b>'+c+'</b>':c}</td>`).join('')}</tr>`).join('');
+</script></body></html>

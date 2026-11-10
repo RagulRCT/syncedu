@@ -1,0 +1,4 @@
+html[data-theme=dark]{background:#0b0f1f;filter:invert(.92) hue-rotate(180deg)}
+html[data-theme=dark] img,html[data-theme=dark] svg image{filter:invert(1) hue-rotate(180deg)}
+
+.theme-fab{position:fixed;left:14px;bottom:14px;z-index:99;background:#0f1530;color:#fff;border:1px solid #2a3263;padding:8px 14px;border-radius:99px;font:600 13px -apple-system,sans-serif;cursor:pointer}

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>eduSync — From learning to earning</title>
+<script src="theme.js"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header id="top">
+  <a class="brand" href="./">edu<b>Sync</b></a>
+  <nav id="nav"></nav>
+  <span id="who"></span>
+  <button id="theme" title="Toggle dark / light"></button>
+</header>
+<main id="app"><p class="muted pad">Loading…</p></main>
+<footer class="small muted" style="text-align:center;padding:0 16px 28px">Browser-only demo: all data lives in <i>this</i> browser (localStorage). Credentials verify only here. <a href="#" id="reset-demo">Reset demo data</a></footer>
+<div id="toasts"></div>
+<script src="vendor/sql-wasm.js"></script>
+<script src="engine.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
